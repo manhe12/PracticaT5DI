@@ -1,6 +1,8 @@
 package es.studium.PracticaT2;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
 
 public class ConsultaTicket extends JFrame implements WindowListener{
 
@@ -19,6 +22,7 @@ public class ConsultaTicket extends JFrame implements WindowListener{
 	private JPanel contentPane;
     private JTable table;
     private DefaultTableModel tableModel;
+    private JButton btnGenerarInforme;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -48,6 +52,19 @@ public class ConsultaTicket extends JFrame implements WindowListener{
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setBounds(10, 10, 560, 300);
         contentPane.add(scrollPane);
+        
+        btnGenerarInforme = new JButton("Generar informe");
+        btnGenerarInforme.setBounds(232, 327, 126, 23);
+        contentPane.add(btnGenerarInforme);
+        btnGenerarInforme.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Crear una instancia de la nueva ventana
+				InformeTickets informeTickets = new InformeTickets();
+				informeTickets.setVisible(true); // Mostrar la nueva ventana
+				informeTickets.setLocationRelativeTo(null);
+			}
+		});
 
         // Cargar los tickets y llenar la tabla
         cargarTickets();
